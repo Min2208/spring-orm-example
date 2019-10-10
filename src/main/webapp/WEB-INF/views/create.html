@@ -7,25 +7,28 @@
 <body>
 <form th:action="@{/customers/create}" th:object="${customer}" method="post">
     <fieldset>
-        <legend>Customer Information</legend>
+        <legend th:text="#{Customer}"></legend>
         <table>
 
             <tr>
-                <td>Name</td>
+                <td th:text="#{Name}"></td>
                 <td>
                     <input type="text" th:field="*{name}">
+                    <span th:if="${#fields.hasErrors('name')}" th:text="#{NotEmpty.customer.name}"></span>
                 </td>
             </tr>
             <tr>
-                <td>Email</td>
+                <td th:text="#{Email}"></td>
                 <td>
                     <input type="text" th:field="*{email}">
+                    <span th:if="${#fields.hasErrors()}" th:text="#{Email.customer.email}"></span>
                 </td>
             </tr>
             <tr>
-                <td>Address</td>
+                <td th:text="#{Address}"></td>
                 <td>
                     <input type="text" th:field="*{address}">
+                    <span th:if="${#fields.hasErrors()}" th:text="#{NotEmpty.customer.address}"></span>
                 </td>
             </tr>
             <tr>

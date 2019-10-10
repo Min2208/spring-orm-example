@@ -4,12 +4,15 @@ import com.codegym.model.Customer;
 import com.codegym.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -49,10 +52,14 @@ public class CustomerController {
     }
 
     @PostMapping("create")
-    public String addCustomer(Customer customer){
-        System.out.println(customer.getName());
+    public ModelAndView addCustomer(@Validated Customer customer, BindingResult bindingResult){
+        System.out.println(bindingResult.hasFieldErrors());
+        if (bindingResult.hasFieldErrors()){
+            return new ModelAndView("create");
+        }
+
         customerService.save(customer);
-        return "redirect:/customers";
+        return new ModelAndView("list", "customers", customerService.findAll());
 
     }
 

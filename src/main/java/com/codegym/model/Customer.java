@@ -1,6 +1,9 @@
 package com.codegym.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Customers")
@@ -9,8 +12,12 @@ public class Customer implements Cloneable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty
+    @Size(min = 5)
     private String name;
+    @Email
     private String email;
+    @NotEmpty
     private String address;
 
     public Customer() {

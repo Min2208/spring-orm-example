@@ -16,13 +16,13 @@
 <body>
 There are <span th:text="${customers.size()}"></span> customer(s).
 <table>
-    <caption>Customers List</caption>
+    <caption th:text="#{Customer}"></caption>
     <thead>
     <tr>
-        <td>Id</td>
-        <td >Name</td>
-        <td >Email</td>
-        <td>Address</td>
+        <td th:text="#{ID}"></td>
+        <td th:text="#{Name}"></td>
+        <td th:text="#{Email}"></td>
+        <td th:text="#{Address}"></td>
         <td colspan="2"><a th:href="@{/customers/add}">Add Customer</a></td>
 
     </tr>
@@ -41,6 +41,7 @@ There are <span th:text="${customers.size()}"></span> customer(s).
 
     </tbody>
 </table>
+Language: <a href="?lang=en">English</a> | <a href="?lang=fr">French</a>
 
 </body>
 </html>
